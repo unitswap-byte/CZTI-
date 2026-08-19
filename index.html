@@ -151,9 +151,6 @@
       border-color: var(--gold-muted);
       border-bottom-color: var(--gold-muted) !important;
     }
-    .nav-desktop .btn-launch.active {
-      border-bottom-color: var(--gold-muted) !important;
-    }
 
     .hamburger {
       display: none;
@@ -1008,7 +1005,8 @@
         <a href="#" data-page="about">About</a>
         <a href="#" data-page="docs">Docs</a>
       </nav>
-      <a href="#" class="btn-launch" data-page="launch">Launch App</a>
+      <!-- 纯外链，无 data-page -->
+      <a href="https://poc-20-mu.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-launch">Launch App</a>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -1023,14 +1021,15 @@
     <a href="#" data-page="resources">Resources</a>
     <a href="#" data-page="about">About</a>
     <a href="#" data-page="docs">Docs</a>
-    <a href="#" class="btn-launch" data-page="launch">Launch App</a>
+    <!-- 纯外链，无 data-page -->
+    <a href="https://poc-20-mu.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-launch">Launch App</a>
   </div>
 
   <!-- ===== MAIN ===== -->
   <main>
 
     <!-- ============================================================
-         HOME 页面 (完全保留)
+         HOME 页面
     ============================================================ -->
     <section class="page active" id="page-home">
       <div class="container">
@@ -1060,7 +1059,8 @@
             <p>Verifiable real-world recycling data, powered by a global DePIN network.</p>
             <div class="hero-actions">
               <a href="#" class="btn-primary" data-page="docs">Explore Docs</a>
-              <a href="#" class="btn-outline" data-page="launch">Launch App</a>
+              <!-- 纯外链，无 data-page -->
+              <a href="https://poc-20-mu.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-outline">Launch App</a>
             </div>
           </div>
         </div>
@@ -1168,7 +1168,8 @@
 
         <div class="mt-8 text-center">
           <div class="section-title">Ready to join the <span class="gold">network</span>?</div>
-          <a href="#" data-page="launch" class="btn-outline" style="display: inline-block; margin-top: 16px;">Launch App</a>
+          <!-- 纯外链，无 data-page -->
+          <a href="https://poc-20-mu.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-outline" style="display: inline-block; margin-top: 16px;">Launch App</a>
         </div>
       </div>
     </section>
@@ -1264,7 +1265,8 @@
 
         <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 40px 0 20px;">
           <a href="#" data-page="docs" class="btn-primary" style="padding: 12px 34px;">Explore Documentation</a>
-          <a href="#" data-page="launch" class="btn-outline" style="padding: 12px 34px;">Launch App</a>
+          <!-- 纯外链，无 data-page -->
+          <a href="https://poc-20-mu.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-outline" style="padding: 12px 34px;">Launch App</a>
         </div>
         <div style="margin-top: 20px; text-align: center;">
           <a href="#" data-page="home" style="color: var(--gold-muted);">← Back Home</a>
@@ -1320,7 +1322,7 @@
     </section>
 
     <!-- ============================================================
-         DOCS 页面 — TOC 已移除，品牌名已更新
+         DOCS 页面
     ============================================================ -->
     <section class="page" id="page-docs">
       <div class="container">
@@ -1358,7 +1360,7 @@
   </footer>
 
   <!-- ============================================================ -->
-  <!-- ===== JAVASCRIPT — TOC 已移除，品牌名已更新 ===== -->
+  <!-- ===== JAVASCRIPT — 已删除所有 launch 相关逻辑 ===== -->
   <script>
     (function() {
       'use strict';
@@ -1454,12 +1456,9 @@
       const docsSidebar = document.getElementById('docsSidebar');
       const docsContent = document.getElementById('docsContent');
 
-      // -------- 导航函数 --------
+      // -------- 导航函数（已删除 launch 逻辑） --------
       function navigateTo(pageId) {
-        if (pageId === 'launch') {
-          window.open('#', '_blank');
-          return;
-        }
+        // 只处理内部页面
         pages.forEach(p => p.classList.remove('active'));
         const target = document.getElementById('page-' + pageId);
         if (target) {
@@ -1478,7 +1477,7 @@
         window.location.hash = currentPage === 'home' ? '' : currentPage;
       }
 
-      // -------- 渲染 Docs（无 TOC，品牌名已更新） --------
+      // -------- 渲染 Docs（无 TOC） --------
       function renderDocs() {
         if (!docsSidebar || !docsContent) return;
 
@@ -1536,12 +1535,11 @@
         const breadcrumb = `<div class="breadcrumb">Docs / ${sectionTitle} / <span>${item.label}</span></div>`;
         const meta = `<div class="meta">Last updated: August 2025</div>`;
 
-        // -------- 内容映射（完全保留上一版真实内容） --------
+        // -------- 内容映射（完整保留，与上一版一致） --------
         let contentHTML = '';
 
         switch (slug) {
 
-          // ---- 01. Overview ----
           case 'overview-introduction':
             contentHTML = `
               ${breadcrumb}
@@ -1626,12 +1624,11 @@
                       <td>Govern network parameters, incentive rules, and allocate funds for growth</td>
                       <td>Budgeted management (48‑month multi‑sig)</td></tr>
                 </table>
-                <p class="note">Each role contributes to the network’s core value: connecting real‑world recycling with verifiable ESG data.</p>
+                <p class="note">Each role contributes to the network's core value: connecting real‑world recycling with verifiable ESG data.</p>
               </div>
             `;
             break;
 
-          // ---- 02. Tokenomics (已填充，保留) ----
           case 'tokenomics-supply':
             contentHTML = `
               ${breadcrumb}
@@ -1740,7 +1737,6 @@
             `;
             break;
 
-          // ---- 03. Airdrop (已填充，保留) ----
           case 'airdrop-overview':
             contentHTML = `
               ${breadcrumb}
@@ -1837,7 +1833,6 @@
             `;
             break;
 
-          // ---- 04. Checker Network (真实内容) ----
           case 'checker-overview':
             contentHTML = `
               ${breadcrumb}
@@ -1883,7 +1878,7 @@
               <h1>Base Rewards (8%)</h1>
               ${meta}
               <div class="body">
-                <p>The <strong>8% Base Rewards</strong> pool is designed to reward daily verification activity. It is distributed daily based on each node’s effective task completion.</p>
+                <p>The <strong>8% Base Rewards</strong> pool is designed to reward daily verification activity. It is distributed daily based on each node's effective task completion.</p>
                 <ul>
                   <li><strong>Total pool:</strong> 8% of supply = 3.36 billion vCZTI</li>
                   <li><strong>Release period:</strong> 48 months (~1,460 days)</li>
@@ -1918,7 +1913,7 @@
                   <h4>Example</h4>
                   <p>Quarterly pool = 105M, total eligible base rewards = 50M, your base rewards = 50,000 → 105M × 50,000/50M = <strong>105,000 vCZTI</strong>.</p>
                 </div>
-                <p><strong>Note:</strong> Performance rewards are estimated until final evaluation at quarter end — displayed as “pending” until confirmed.</p>
+                <p><strong>Note:</strong> Performance rewards are estimated until final evaluation at quarter end — displayed as "pending" until confirmed.</p>
               </div>
             `;
             break;
@@ -1948,7 +1943,6 @@
             `;
             break;
 
-          // ---- 05. IDO (已填充，保留) ----
           case 'ido-overview':
             contentHTML = `
               ${breadcrumb}
@@ -2054,7 +2048,6 @@
             `;
             break;
 
-          // ---- 06. Recycling Network (真实内容) ----
           case 'recycling-workers':
             contentHTML = `
               ${breadcrumb}
@@ -2155,7 +2148,6 @@
             `;
             break;
 
-          // ---- 07. Technology (真实内容) ----
           case 'tech-architecture':
             contentHTML = `
               ${breadcrumb}
@@ -2255,7 +2247,6 @@
             `;
             break;
 
-          // ---- 08. FAQ ----
           case 'faq-general':
             contentHTML = `
               ${breadcrumb}
@@ -2274,7 +2265,6 @@
             `;
             break;
 
-          // 默认
           default:
             contentHTML = `
               ${breadcrumb}
@@ -2313,15 +2303,16 @@
         });
       }
 
-      // -------- 事件绑定 --------
+      // -------- 事件绑定：仅处理内部页面 [data-page] 导航 --------
       document.addEventListener('click', function(e) {
         const target = e.target.closest('[data-page]');
-        if (target) {
-          e.preventDefault();
-          navigateTo(target.dataset.page);
-        }
+        if (!target) return;
+
+        e.preventDefault();
+        navigateTo(target.dataset.page);
       });
 
+      // -------- 汉堡菜单 --------
       if (hamburger) {
         hamburger.addEventListener('click', function() {
           this.classList.toggle('open');
@@ -2329,6 +2320,7 @@
         });
       }
 
+      // -------- Hash 路由 --------
       function handleHash() {
         const hash = window.location.hash.replace('#', '');
         if (hash && ['home','network','solutions','ecosystem','resources','docs','about'].includes(hash)) {
